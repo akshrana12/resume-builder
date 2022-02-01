@@ -27,7 +27,7 @@ body {
 }
 
 #personal-detail-section {
-    height: 70px;
+    height: 78px;
     width: 800px;
     align-content: center;
 }
@@ -109,4 +109,10 @@ nav h1 {
 
 h1 span {
     padding: 10;
+}
+
+.edit-tag {
+    text-decoration: none;
+    color: white;
+    background-color: black;
 }

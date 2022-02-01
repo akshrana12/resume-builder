@@ -28,6 +28,11 @@
                     </h1>
                     <p> <b>Phone no-</b> <span id="phone-number"> <%= detail.personal_detail.contact %> </span> </p>
                     <p> <b>Email-</b> <span id="email"> <%= detail.personal_detail.email %> </span> </p>
+                    <p style="margin-top: 3px;margin-bottom:4px">
+                        <a class="edit-tag" href="/personal-detail/<%=detail.personal_detail.id%>">
+                            <h4>EDIT</h4>
+                        </a>
+                    </p>
                     <%}else{%>
                         <form method="GET" action="/personal-detail">
                             <button class="button button4">ADD+</button>
@@ -59,6 +64,11 @@
                                         </h4>
                                     </div>
                                 </li>
+                                <p style="margin-top: 3px;margin-bottom:4px">
+                                    <a class="edit-tag" href="/education-detail/<%=detail.personal_detail.id%>">
+                                        <h4>EDIT</h4>
+                                    </a>
+                                </p>
                                 <%} %>
                         </ul>
                         <%}%>
@@ -80,6 +90,11 @@
                                 <b>Languages: </b>
                                 <%=detail.technical_skills.languages%>
                             </li>
+                            <p style="margin-top: 3px;margin-bottom:4px">
+                                <a class="edit-tag" href="/technical-skills/<%=detail.technical_skills.id%>">
+                                    <h4>EDIT</h4>
+                                </a>
+                            </p>
                             <%}else{%>
                                 <form method="GET" action="/technical-skills">
                                     <button class="button button4">ADD+</button>
@@ -110,6 +125,11 @@
                                         </div>
                                     </div>
                                 </li>
+                                <p style="margin-top: 3px;margin-bottom:4px">
+                                    <a class="edit-tag" href="/project/<%=detail1.id%>">
+                                        <h4>EDIT</h4>
+                                    </a>
+                                </p>
                                 <% }%>
                         </ul>
                         <%}%>
@@ -139,6 +159,11 @@
                                         </div>
                                     </div>
                                 </li>
+                                <p style="margin-top: 3px;margin-bottom:4px">
+                                    <a class="edit-tag" href="/work-experience/<%=detail1.id%>">
+                                        <h4>EDIT</h4>
+                                    </a>
+                                </p>
                                 <% }%>
                         </ul>
                         <%}%>
@@ -157,6 +182,11 @@
                                 <li>
                                     <%= detail1.achievement %>
                                 </li>
+                                <p style="margin-top: 3px;margin-bottom:4px">
+                                    <a class="edit-tag" href="/achievements/<%=detail1.id%>">
+                                        <h4>EDIT</h4>
+                                    </a>
+                                </p>
                                 <%}%>
                         </ul>
                         <%}%>
