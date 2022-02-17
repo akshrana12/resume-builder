@@ -11,14 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Resume Builder</title>
 </head>
-<nav>
-    <h1 id="main-heading">AUTOMATED RESUME BUILDER
-    </h1>
-</nav>
 
 <body>
-    <div id="main-box">
-        <div id="main-content">
+    <nav>
+        <div>
+            <form method="GET" action="/clear">
+                <button class="preview-btn">Clear</button>
+            </form>
+        </div>
+        <h1 id="main-heading">AUTOMATED RESUME BUILDER
+        </h1>
+        <div>
+            <form method="GET" action="/preview">
+                <button class="preview-btn">Preview Resume</button>
+            </form>
+        </div>
+    </nav>
+    <section class="main-box">
+        <section class="main-content">
             <section id="personal-detail-section">
                 <%if(detail.personal_detail){%>
                     <h1>
@@ -28,30 +38,34 @@
                     </h1>
                     <p> <b>Phone no-</b> <span id="phone-number"> <%= detail.personal_detail.contact %> </span> </p>
                     <p> <b>Email-</b> <span id="email"> <%= detail.personal_detail.email %> </span> </p>
-                    <p style="margin-top: 3px;margin-bottom:4px">
-                        <a class="edit-tag" href="/personal-detail/<%=detail.personal_detail.id%>">
-                            <h4>EDIT</h4>
-                        </a>
+                    <p style="margin-top: 3px;margin-bottom:4px" class="sidebyside">
+                        <span>
+                            <form method="GET" action="/personal-detail/<%=detail.personal_detail.id%>">
+                                <button type="submit" class="button2">EDIT</button>
+                            </form>
+                        </span>
+                        <span>
+                            <form method="POST" action="/personal-detail/<%=detail.personal_detail.id%>?_method=DELETE">
+                                <button type="submit" class="button2">DELETE</button>
+                            </form>
+                        </span>
                     </p>
                     <%}else{%>
                         <form method="GET" action="/personal-detail">
-                            <button class="button button4">ADD+</button>
+                            <button class="button1 button4">ADD+</button>
                         </form>
                         <%}%>
             </section>
-
-
-
             <section id="info-section">
-                <div class="info-card">
-                    <div class="info-card-head">
+                <section class="info-card">
+                    <section class="info-card-head">
                         <h3>EDUCATION</h3>
-                    </div>
+                    </section>
                     <%if(detail.education_detail){%>
                         <ul class="info-card-detail">
                             <% for(let detail1 of detail.education_detail ){ %>
                                 <li style="margin-top:5px">
-                                    <div class="info-card-content">
+                                    <section class="info-card-content">
                                         <h4>
                                             <%= detail1.institute %>
                                         </h4>
@@ -62,27 +76,31 @@
                                         <h4>CGPA/% -
                                             <%=detail1.percent%>
                                         </h4>
-                                    </div>
+                                    </section>
                                 </li>
-                                <p style="margin-top: 3px;margin-bottom:4px">
-                                    <a class="edit-tag" href="/education-detail/<%=detail.personal_detail.id%>">
-                                        <h4>EDIT</h4>
-                                    </a>
+                                <p style="margin-top: 3px;margin-bottom:4px" class="sidebyside">
+                                    <span>
+                                        <form method="GET" action="/education-detail/<%=detail1.id%>">
+                                            <button style="display:inline" type="submit" class="button2">EDIT</button>
+                                    </form>
+                                    </span>
+                                    <span>
+                                        <form method="POST" action="/education-detail/<%=detail1.id%>?_method=DELETE">
+                                            <button style="display:inline" type="submit" class="button2">DELETE</button>
+                                        </form>
+                                    </span>
                                 </p>
                                 <%} %>
                         </ul>
                         <%}%>
                             <form method="GET" action="/education-detail">
-                                <button class="button button4">ADD+</button>
+                                <button class="button1 button4">ADD+</button>
                             </form>
-                </div>
-
-
-
-                <div class="info-card">
-                    <div class="info-card-head">
+                </section>
+                <section class="info-card">
+                    <section class="info-card-head">
                         <h3>TECHNICAL SKILLS</h3>
-                    </div>
+                    </section>
 
                     <ul class="info-card-detail">
                         <%if(detail.technical_skills){%>
@@ -90,115 +108,141 @@
                                 <b>Languages: </b>
                                 <%=detail.technical_skills.languages%>
                             </li>
-                            <p style="margin-top: 3px;margin-bottom:4px">
-                                <a class="edit-tag" href="/technical-skills/<%=detail.technical_skills.id%>">
-                                    <h4>EDIT</h4>
-                                </a>
+                            <p style="margin-top: 3px;margin-bottom:4px" class="sidebyside">
+                                <span>
+                                    <form method="GET" action="/technical-skills/<%=detail.technical_skills.id%>">
+                                        <button style="display:inline" type="submit" class="button2">EDIT</button>
+                                    </form>
+                                </span>
+                                <span>
+                                    <form method="POST" action="/technical-skills/<%=detail.technical_skills.id%>?_method=DELETE">
+                                        <button style="display:inline" type="submit" class="button2">DELETE</button>
+                                    </form>
+                                </span>
                             </p>
                             <%}else{%>
                                 <form method="GET" action="/technical-skills">
-                                    <button class="button button4">ADD+</button>
+                                    <button class="button1 button4">ADD+</button>
                                 </form>
                                 <%}%>
                     </ul>
-                </div>
+                </section>
 
 
-                <div class="info-card">
-                    <div class="info-card-head">
+                <section class="info-card">
+                    <section class="info-card-head">
                         <h3>PROJECT</h3>
-                    </div>
+                    </section>
                     <%if(detail.project){%>
                         <ul class="info-card-detail">
                             <% for(let detail1 of detail.project ){ %>
                                 <li>
-                                    <div class="info-card-content">
-                                        <div class="info-card-title">
+                                    <section class="info-card-content">
+                                        <section class="info-card-title">
                                             <h4>
                                                 <%=detail1.project%>
                                             </h4>
-                                        </div>
-                                        <div class="info-card-desc">
+                                        </section>
+                                        <section class="info-card-desc">
                                             <p>
                                                 <%=detail1.description%>
                                             </p>
-                                        </div>
-                                    </div>
+                                        </section>
+                                    </section>
                                 </li>
-                                <p style="margin-top: 3px;margin-bottom:4px">
-                                    <a class="edit-tag" href="/project/<%=detail1.id%>">
-                                        <h4>EDIT</h4>
-                                    </a>
+                                <p style="margin-top: 3px;margin-bottom:4px" class="sidebyside">
+                                    <span>
+                                        <form method="GET" action="/project/<%=detail1.id%>?">
+                                            <button style="display:inline" type="submit" class="button2">EDIT</button>
+                                        </form>
+                                    </span>
+                                    <span>
+                                        <form method="POST" action="/project/<%=detail1.id%>?_method=DELETE">
+                                            <button style="display:inline" type="submit" class="button2">DELETE</button>
+                                        </form>
+                                    </span>
                                 </p>
                                 <% }%>
                         </ul>
                         <%}%>
                             <form action="/project" method="GET">
-                                <button class="button button4">ADD+</button>
+                                <button class="button1 button4">ADD+</button>
                             </form>
-                </div>
+                </section>
 
-                <div class="info-card">
-                    <div class="info-card-head">
+                <section class="info-card">
+                    <section class="info-card-head">
                         <h3>WORK EXPERIENCE</h3>
-                    </div>
+                    </section>
                     <%if(detail.work_experience){%>
                         <ul class="info-card-detail">
                             <% for(let detail1 of detail.work_experience ){ %>
                                 <li>
-                                    <div class="info-card-content">
-                                        <div class="info-card-title">
+                                    <section class="info-card-content">
+                                        <section class="info-card-title">
                                             <h4>
                                                 <%=detail1.company%>
                                             </h4>
-                                        </div>
-                                        <div class="info-card-desc">
+                                        </section>
+                                        <section class="info-card-desc">
                                             <p>
                                                 <%=detail1.description%>
                                             </p>
-                                        </div>
-                                    </div>
+                                        </section>
+                                    </section>
                                 </li>
-                                <p style="margin-top: 3px;margin-bottom:4px">
-                                    <a class="edit-tag" href="/work-experience/<%=detail1.id%>">
-                                        <h4>EDIT</h4>
-                                    </a>
+                                <p style="margin-top: 3px;margin-bottom:4px" class="sidebyside">
+                                    <span>
+                                        <form method="GET" action="/work-experience/<%=detail1.id%>">
+                                            <button style="display:inline" type="submit" class="button2">EDIT</button>
+                                        </form>
+                                    </span>
+                                    <span>
+                                        <form method="POST" action="/work-experience/<%=detail1.id%>?_method=DELETE">
+                                            <button style="display:inline" type="submit" class="button2">DELETE</button>
+                                        </form>
+                                    </span>
                                 </p>
                                 <% }%>
                         </ul>
                         <%}%>
                             <form action="/work-experience" method="GET">
-                                <button class="button button4">ADD+</button>
+                                <button class="button1 button4">ADD+</button>
                             </form>
-                </div>
+                </section>
 
-                <div class="info-card">
-                    <div class="info-card-head">
+                <section class="info-card">
+                    <section class="info-card-head">
                         <h3>ACHIEVEMENTS</h3>
-                    </div>
+                    </section>
                     <%if(detail.achievement){%>
                         <ul class="info-card-detail">
                             <% for(let detail1 of detail.achievement ){ %>
                                 <li>
                                     <%= detail1.achievement %>
                                 </li>
-                                <p style="margin-top: 3px;margin-bottom:4px">
-                                    <a class="edit-tag" href="/achievements/<%=detail1.id%>">
-                                        <h4>EDIT</h4>
-                                    </a>
+                                <p style="margin-top: 3px;margin-bottom:4px" class="sidebyside">
+                                    <span>
+                                        <form method="GET" action="/achievements/<%=detail1.id%>">
+                                            <button style="display:inline" type="submit" class="button2">EDIT</button>
+                                        </form>
+                                    </span>
+                                    <span>
+                                        <form method="POST" action="/achievements/<%=detail1.id%>?_method=DELETE">
+                                            <button style="display:inline" type="submit" class="button2">DELETE</button>
+                                        </form>
+                                    </span>
                                 </p>
                                 <%}%>
                         </ul>
                         <%}%>
                             <form action='/achievement' method="GET">
-                                <button class="button button4">ADD+</button>
+                                <button class="button1 button4">ADD+</button>
                             </form>
-                </div>
-
-
+                </section>
             </section>
-        </div>
-    </div>
+        </section>
+    </section>
 </body>
 
 </html>
